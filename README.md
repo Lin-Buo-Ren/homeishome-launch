@@ -1,4 +1,4 @@
-# home-is-home Stage Snap
+# `$HOME` is Home Runtime Patching for Snaps
 Override passwd->pw_dir for the current user's password database entry with $HOME
 
 ## Reference

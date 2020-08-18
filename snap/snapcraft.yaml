@@ -1,5 +1,5 @@
-name: homeishome
-title: '`$HOME` is Home'
+name: homeishome-patch
+title: '$HOME is Home Runtime Patching for Snaps'
 base: core
 version: git
 summary: Override pw_dir for the current user's password database entry with $HOME
@@ -112,7 +112,7 @@ plugs:
   removable-media: # Non A/C
 
 apps:
-  homeishome:
+  homeishome-patch:
     # The adapter to set up runtime environment at the launch of the snap
     # NOTE: The `command-chain` property is only supported by the `full` adapter
     adapter: full
