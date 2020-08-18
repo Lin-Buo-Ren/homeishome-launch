@@ -51,6 +51,8 @@ confinement: strict
 parts:
   homeishome:
     after:
+    - patching
+
     # for override-pull script
     - scriptlets
 
@@ -67,8 +69,16 @@ parts:
       - libc6-dev
     plugin: make
     make-install-var: INSTALLDIR
+    override-build: |
+      set -o nounset
+
+      patch \
+        --strip=1 \
+        < "${SNAPCRAFT_STAGE}"/patching/disable-shared-library-execution-feature.patch
+      snapcraftctl build
+
     organize:
-      homeishome.so: bin/homeishome
+      homeishome.so: lib/homeishome.so
 
   # Programs to modify the behavior of each step of the snapcraft lifecycles
   scriptlets:
@@ -76,6 +86,24 @@ parts:
     plugin: dump
     organize:
       '*': scriptlets/
+    prime:
+    - -*
+
+  # Launcher programs to fix problems at runtime
+  launchers:
+    source: snap/local/launchers
+    plugin: dump
+    organize:
+      '*': bin/
+    stage:
+    - -bin/README.*
+
+  # Files to patch the files in the snap
+  patching:
+    source: snap/local/patching
+    plugin: dump
+    organize:
+      '*': patching/
     prime:
     - -*
 
@@ -91,4 +119,4 @@ apps:
 
     # An *relative path* to an executable file root from the `prime` directory to be executed, and its command-line arguments
     # NOTE: The right angle bracket at the beginning of the value of the `command` keyword starts a YAML folded style block scalar, refer the following spec document for more info: http://yaml.org/spec/1.2/spec.html#id2796251
-    command: bin/homeishome
+    command: bin/homeishome-launch
