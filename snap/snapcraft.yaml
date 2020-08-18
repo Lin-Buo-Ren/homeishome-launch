@@ -1,7 +1,7 @@
 name: homeishome-launch
 title: '$HOME is Home Runtime Patching for Snaps'
 base: core
-version: git
+adopt-info: homeishome
 summary: Override pw_dir for the current user's password database entry with $HOME
 description: |
   Some applications query the password database without checking "HOME" to determine where
