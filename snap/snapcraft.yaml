@@ -45,7 +45,7 @@ description: |
 
   Refer the Snapcraft Forum topic for more information: T.B.A.
 
-grade: devel
+grade: stable
 confinement: strict
 
 parts:
