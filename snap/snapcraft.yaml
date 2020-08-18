@@ -46,7 +46,7 @@ description: |
   Refer the Snapcraft Forum topic for more information: T.B.A.
 
 grade: devel
-confinement: devmode
+confinement: strict
 
 parts:
   homeishome:
