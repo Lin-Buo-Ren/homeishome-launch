@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index 9c6d6af..595103b 100755
+index 9c6d6af..c567808 100755
 --- a/Makefile
 +++ b/Makefile
 @@ -5,7 +5,7 @@ INSTALLDIR = /usr/local/bin
@@ -11,12 +11,16 @@ index 9c6d6af..595103b 100755
  CPPFLAGS = -D_GNU_SOURCE
  LDFLAGS = -ldl
  LIBRARY_SO = homeishome.so
-@@ -41,8 +41,8 @@ $(INSTALLDIR)/$(LIBRARY_SO): $(LIBRARY_SO) tests
+@@ -39,10 +39,10 @@ run-tests: $(LIBRARY_SO) tests
+ 
+ $(INSTALLDIR)/$(LIBRARY_SO): $(LIBRARY_SO) tests
  	cp $(LIBRARY_SO) $(INSTALLDIR)
- 	chmod 755 $(INSTALLDIR)/$(LIBRARY_SO)
- 	@LD_PRELOAD=$(INSTALLDIR)/$(LIBRARY_SO) ./tests >/dev/null
+-	chmod 755 $(INSTALLDIR)/$(LIBRARY_SO)
+-	@LD_PRELOAD=$(INSTALLDIR)/$(LIBRARY_SO) ./tests >/dev/null
 -	@$@ ./tests >/dev/null
 -	@echo "$(INSTALLDIR)/$(LIBRARY_SO): installed, and all tests passed"
++	chmod 644 $(INSTALLDIR)/$(LIBRARY_SO)
++	#@LD_PRELOAD=$(INSTALLDIR)/$(LIBRARY_SO) ./tests >/dev/null
 +	#@$@ ./tests >/dev/null
 +	#@echo "$(INSTALLDIR)/$(LIBRARY_SO): installed, and all tests passed"
  
