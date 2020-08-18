@@ -81,8 +81,8 @@ parts:
 
 plugs:
   home:
-  removable-data: # Non A/C
-  
+  removable-media: # Non A/C
+
 apps:
   homeishome:
     # The adapter to set up runtime environment at the launch of the snap
