@@ -70,6 +70,9 @@ parts:
       - libc6-dev
     plugin: make
     make-install-var: INSTALLDIR
+    make-parameters:
+      - LOGNAME=root
+      - V=1
     override-build: |
       set -o nounset
 
