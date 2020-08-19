@@ -11,15 +11,14 @@ index 9c6d6af..7339180 100755
  CPPFLAGS = -D_GNU_SOURCE
  LDFLAGS = -ldl
  LIBRARY_SO = homeishome.so
-@@ -37,12 +37,9 @@ tests: tests.c
+@@ -37,12 +37,10 @@ tests: tests.c
  run-tests: $(LIBRARY_SO) tests
  	LD_PRELOAD="$(LIBASAN_SO)" ./$(LIBRARY_SO) ./tests
  
--$(INSTALLDIR)/$(LIBRARY_SO): $(LIBRARY_SO) tests
-+$(INSTALLDIR)/$(LIBRARY_SO): $(LIBRARY_SO)
+ $(INSTALLDIR)/$(LIBRARY_SO): $(LIBRARY_SO) tests
  	cp $(LIBRARY_SO) $(INSTALLDIR)
 -	chmod 755 $(INSTALLDIR)/$(LIBRARY_SO)
--	@LD_PRELOAD=$(INSTALLDIR)/$(LIBRARY_SO) ./tests >/dev/null
+ 	@LD_PRELOAD=$(INSTALLDIR)/$(LIBRARY_SO) ./tests >/dev/null
 -	@$@ ./tests >/dev/null
 -	@echo "$(INSTALLDIR)/$(LIBRARY_SO): installed, and all tests passed"
 +	chmod 644 $(INSTALLDIR)/$(LIBRARY_SO)
