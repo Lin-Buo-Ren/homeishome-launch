@@ -52,37 +52,31 @@ confinement: strict
 parts:
   homeishome:
     after:
-    - patching
-
     # for override-pull script
     - scriptlets
 
     source: https://github.com/ericpruitt/homeishome.git
+    source-commit: 83c91ae3cfed5d477a68bf54d6ebe354441b7533
     override-pull: |
       set -o nounset
 
       snapcraftctl pull
 
       "${SNAPCRAFT_STAGE}"/scriptlets/main-adopt-info
-
     build-packages:
       - gcc
       - libc6-dev
     plugin: make
-    make-install-var: INSTALLDIR
+    make-install-var: LIB
     make-parameters:
-      - LOGNAME=root
-      - V=1
-    override-build: |
-      set -o nounset
-
-      patch \
-        --strip=1 \
-        < "${SNAPCRAFT_STAGE}"/patching/disable-shared-library-execution-feature.patch
-      snapcraftctl build
-
+      - BIN=$SNAPCRAFT_PART_INSTALL
+      - all
     organize:
       homeishome.so: lib/homeishome.so
+      homeishome: bin/homeishome
+    prime:
+      - lib/homeishome.so
+      - bin/homeishome
 
   # Programs to modify the behavior of each step of the snapcraft lifecycles
   scriptlets:
