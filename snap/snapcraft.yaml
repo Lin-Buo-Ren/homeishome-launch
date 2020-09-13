@@ -115,4 +115,4 @@ apps:
     # NOTE: The `command-chain` property is only supported by the `full` adapter
     adapter: full
 
-    command: homeishome-launch
+    command: bin/homeishome-launch
